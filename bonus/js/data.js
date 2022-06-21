@@ -7,6 +7,12 @@
 // Aggiungere alla pagina una select in cui le options corrispondono ai vari tipi di icone (animal, vegetable, user).
 //  Quando l'utente seleziona un tipo dalla select, visualizzare solamente le icone corrispondenti.
 
+// BONUS
+// 1- modificare la struttura dati fornita e valorizzare la proprietà "color" in modo dinamico:
+// generare in modo casuale un codice colore, sapendo che la notazione esadecimale è formata dal simbolo "#" 
+// seguito da 6 caratteri alfanumerici compresi tra 0 e 9 e A e F.
+// 2- popolare le options della select della milestone 3 dinamicamente.
+
 let IconArray = [
 	{
 		name: 'cat',
@@ -126,6 +132,10 @@ let IconArray = [
 const fontIcon = document.querySelector('.js-container');
 const selectElement = document.getElementById('select-change');
 
+dorwSelect(selectElement);
+function dorwSelect(value){
+
+}
 
 fontIconArrayToDraw(IconArray);
 
@@ -143,9 +153,28 @@ function fontIconArrayToDraw(fontIconArray){
     </div>
 		`;
 
-		fontIcon.innerHTML += SingleBoxIcon;
+		fontIcon.innerHTML += SingleBoxIcon;		
 	});
+	
 }
+
+ const selectOption = 'all'
+
+ let option = `<option value="${selectOption}">${selectOption}</option>`;
+selectElement.innerHTML += option;
+const typeArray = [];
+IconArray.forEach((element) =>{
+	// console.log (element)
+	if(!typeArray.includes(element.type)){
+		typeArray.push (element.type)		
+	} 
+});
+
+console.log(typeArray)
+typeArray.forEach((element) =>{	
+	 option =`<option value="${element}">${element}</option>`
+	 selectElement.innerHTML += option;
+});
 
 // creo una evento al cambio della select stampa in pagina solo gli elementi 
 selectElement.addEventListener('change', () => {
@@ -163,6 +192,8 @@ selectElement.addEventListener('change', () => {
 		
 		fontIconArrayToDraw(IconArray);
 	}
+
+	
 });
 
 
